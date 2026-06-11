@@ -299,7 +299,7 @@ $ ssh server "pm2 restart myapp"
 
 ## License
 
-MIT © 慕落
+MIT © 慕落 （muluo mingzhema）
 
 ---
 

@@ -27,6 +27,9 @@ Thumbs.db
 *.tmp
 npm-debug.log*
 
+.claude
+node-jar-0.1.0.tgz
+
 # Test fixtures — keep source but ignore their node_modules
 test/fixtures/*/node_modules/
 test/fixtures/*/dist/
