@@ -1,0 +1,13 @@
+{
+  "name": "test-simple-express",
+  "version": "1.0.0",
+  "description": "Test fixture - Express app like mir-bl-server",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "cors": "^2.8.5"
+  }
+}

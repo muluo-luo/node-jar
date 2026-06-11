@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ts/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Logs & temp
+*.log
+*.tmp
+npm-debug.log*
+
+# Test fixtures — keep source but ignore their node_modules
+test/fixtures/*/node_modules/
+test/fixtures/*/dist/
+
+# Project planning (memory doc)
+npm-npm-mir-bl-server-nodejs-node-modul-stateful-mango.md

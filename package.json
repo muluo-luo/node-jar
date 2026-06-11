@@ -1,0 +1,59 @@
+{
+  "name": "node-jar",
+  "version": "0.1.0",
+  "description": "Bundle Node.js apps into a single deployable file — like Java JAR but for Node",
+  "keywords": [
+    "bundle",
+    "jar",
+    "deploy",
+    "package",
+    "ncc",
+    "obfuscate",
+    "single-file",
+    "node-jar",
+    "deployment",
+    "nestjs",
+    "express"
+  ],
+  "license": "MIT",
+  "author": "慕落 <1227368128@qq.com>",
+  "main": "src/index.js",
+  "bin": {
+    "node-jar": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "logo.png",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muluo/node-jar"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "node bin/cli.js"
+  },
+  "dependencies": {
+    "@vercel/ncc": "^0.38.3",
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "esbuild": "^0.23.0",
+    "fs-extra": "^11.2.0"
+  },
+  "peerDependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  },
+  "peerDependenciesMeta": {
+    "javascript-obfuscator": {
+      "optional": true
+    }
+  }
+}
