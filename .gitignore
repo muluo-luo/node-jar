@@ -22,6 +22,9 @@ Thumbs.db
 *.pem
 *.key
 
+
+package-lock.json
+
 # Logs & temp
 *.log
 *.tmp
