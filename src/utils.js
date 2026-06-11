@@ -9,8 +9,8 @@ function setLogLevel(level) {
 }
 
 function debug(...args) { if (currentLevel <= LOG_LEVELS.debug) console.log(chalk.gray('[DEBUG]'), ...args); }
-function info(...args) { if (currentLevel <= LOG_LEVELS.info) console.log(chalk.cyan('[node-jar]'), ...args); }
-function success(...args) { if (currentLevel <= LOG_LEVELS.info) console.log(chalk.green('[node-jar]'), ...args); }
+function info(...args) { if (currentLevel <= LOG_LEVELS.info) console.log(chalk.cyan('[nar]'), ...args); }
+function success(...args) { if (currentLevel <= LOG_LEVELS.info) console.log(chalk.green('[nar]'), ...args); }
 function warn(...args) { if (currentLevel <= LOG_LEVELS.warn) console.warn(chalk.yellow('[WARN]'), ...args); }
 function error(...args) { if (currentLevel <= LOG_LEVELS.error) console.error(chalk.red('[ERROR]'), ...args); }
 

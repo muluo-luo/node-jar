@@ -50,7 +50,7 @@ function injectVirtualFS(code, virtualFS) {
 
   const bootstrap = `
 (function() {
-  var __nodeJarVFS__ = new Map(Object.entries(${vfsJson}));
+  var __narVFS__ = new Map(Object.entries(${vfsJson}));
   var __origFs__ = {};
 
   // Patch fs module for virtual FS
@@ -66,7 +66,7 @@ function injectVirtualFS(code, virtualFS) {
 
   function vfsLookup(filePath) {
     var key = normalizePath(filePath);
-    for (var _it = __nodeJarVFS__.entries(), _n = _it.next(); !_n.done; _n = _it.next()) {
+    for (var _it = __narVFS__.entries(), _n = _it.next(); !_n.done; _n = _it.next()) {
       var vpath = _n.value[0];
       var vdata = _n.value[1];
       if (key.endsWith(vpath) || key === vpath) {
@@ -129,7 +129,7 @@ function injectVirtualFS(code, virtualFS) {
     try { result = __origFs__.readdirSync.call(fsModule, dirPath); } catch(e) {}
     var dirKey = normalizePath(dirPath);
     var seen = new Set(result);
-    for (var _it2 = __nodeJarVFS__.keys(), _n2 = _it2.next(); !_n2.done; _n2 = _it2.next()) {
+    for (var _it2 = __narVFS__.keys(), _n2 = _it2.next(); !_n2.done; _n2 = _it2.next()) {
       var vpath = _n2.value;
       var vdir = pathModule.dirname(vpath);
       if (vdir === dirKey || dirKey.endsWith('/') && vdir === dirKey.slice(0, -1)) {

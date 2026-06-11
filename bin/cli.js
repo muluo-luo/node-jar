@@ -5,8 +5,8 @@ const path = require('path');
 const pkg = require('../package.json');
 
 program
-  .name('node-jar')
-  .description('Bundle Node.js apps into a single deployable file — like Java JAR but for Node')
+  .name('nar')
+  .description('Bundle Node.js apps into a single deployable file — Node Archive (like Java JAR, but for Node)')
   .version(pkg.version);
 
 program
@@ -21,7 +21,7 @@ program
   .option('--static <dirs...>', 'Additional static directories to embed')
   .option('--externals <pkgs...>', 'Packages to keep as external require()')
   .option('--no-minify', 'Disable minification (for debugging)')
-  .option('-c, --config <path>', 'Path to node-jar config file')
+  .option('-c, --config <path>', 'Path to nar config file')
   .option('-q, --quiet', 'Suppress non-error output')
   .option('--cwd <path>', 'Working directory (default: current directory)')
   .action(async (opts) => {

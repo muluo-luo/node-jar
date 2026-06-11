@@ -18,12 +18,12 @@ function encryptBundle(code, keySource = 'env') {
 
 function wrapWithDecryptor(encrypted, iv, keySource) {
   const secretResolver = keySource === 'env'
-    ? `process.env.APP_SECRET || process.env.NODE_JAR_SECRET || 'node-jar-default-secret'`
+    ? `process.env.APP_SECRET || process.env.NAR_SECRET || 'nar-default-secret'`
     : keySource === 'machine'
       ? `require('os').hostname() + require('os').platform()`
       : JSON.stringify(keySource);
 
-  return `// node-jar encrypted bundle
+  return `// nar encrypted bundle
 const crypto = require('crypto');
 const Module = require('module');
 
@@ -43,8 +43,8 @@ const Module = require('module');
     m.paths = Module._nodeModulePaths(process.cwd());
     m._compile(decrypted, process.cwd() + '/app.bundle.js');
   } catch (e) {
-    console.error('[node-jar] Bundle decryption failed. Check APP_SECRET environment variable.');
-    console.error('[node-jar] Error:', e.message);
+    console.error('[nar] Bundle decryption failed. Check APP_SECRET environment variable.');
+    console.error('[nar] Error:', e.message);
     process.exit(1);
   }
 })();`;
@@ -52,7 +52,7 @@ const Module = require('module');
 
 function resolveSecret(keySource) {
   if (!keySource || keySource === 'env') {
-    return process.env.APP_SECRET || process.env.NODE_JAR_SECRET || 'node-jar-default-secret';
+    return process.env.APP_SECRET || process.env.NAR_SECRET || 'nar-default-secret';
   }
   if (keySource.startsWith('file:')) {
     const fs = require('fs');

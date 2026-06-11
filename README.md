@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="node-jar logo — capybara" width="160">
+  <img src="logo.png" alt="nar logo — capybara" width="160">
 </p>
 
 <p align="center">
@@ -8,13 +8,13 @@
   <img src="https://img.shields.io/badge/version-0.1.0-orange" alt="Version">
 </p>
 
-<h1 align="center">node-jar</h1>
+<h1 align="center">nar</h1>
 
 <p align="center"><strong>Bundle any Node.js backend app into a single deployable file.<br>Express, NestJS, Koa, Fastify — doesn't matter. Treat it like a JAR.</strong></p>
 
 ---
 
-## Why node-jar?
+## Why nar?
 
 Java has JAR. Python has wheels. Node.js? **npm install on production.**
 
@@ -26,13 +26,13 @@ git pull → npm install (5 minutes, 500MB+) → npm run build → pm2 restart
 
 Every server downloads hundreds of megabytes of dependencies — even though nothing changed.
 
-With **node-jar**, you build once, ship a single file:
+With **nar**, you build once, ship a single file:
 
 ```
-npx node-jar build → scp dist/app.bundle.js → node app.bundle.js
+npx nar build → scp dist/app.bundle.js → node app.bundle.js
 ```
 
-| | Traditional | node-jar |
+| | Traditional | nar |
 |---|---|---|
 | **Deploy time** | 5–10 minutes | **10 seconds** |
 | **Server disk** | 200–500 MB | **2–20 MB** |
@@ -48,22 +48,22 @@ npx node-jar build → scp dist/app.bundle.js → node app.bundle.js
 
 ```bash
 # 1. Install as a dev dependency
-npm install --save-dev node-jar
+npm install --save-dev nar-pack
 
 # 2. Build your project (auto-detects everything)
-npx node-jar build
+npx nar build
 
 # 3. Deploy the output
 node dist/app.bundle.js
 ```
 
-That's it. No config needed. `node-jar` reads your `package.json`, finds your entry point, detects TypeScript, bundles everything, and produces a single file.
+That's it. No config needed. `nar` reads your `package.json`, finds your entry point, detects TypeScript, bundles everything, and produces a single file.
 
 ## Framework Support
 
 **One tool. Any framework.**
 
-`node-jar` injects a virtual filesystem shim that intercepts `fs.readFileSync`, `fs.statSync`, `fs.existsSync`, and `fs.readdirSync` — the four functions every Node.js framework's static file middleware relies on. This means your framework works without modification.
+`nar` injects a virtual filesystem shim that intercepts `fs.readFileSync`, `fs.statSync`, `fs.existsSync`, and `fs.readdirSync` — the four functions every Node.js framework's static file middleware relies on. This means your framework works without modification.
 
 | Framework | Static Files | Templates | TypeScript | ORM |
 |---|---|---|---|---|
@@ -91,10 +91,10 @@ For native C/C++ modules (`bcrypt`, `sharp`, `sqlite3`), see [Native Modules](#n
 
 ```bash
 # Zero-config: auto-detect everything
-npx node-jar build
+npx nar build
 
 # Full control
-npx node-jar build \
+npx nar build \
   --entry src/main.ts \
   --output dist/app.bundle.js \
   --tsconfig tsconfig.build.json \
@@ -125,7 +125,7 @@ npx node-jar build \
 ## JS API
 
 ```js
-const { build } = require('node-jar');
+const { build } = require('nar-pack');
 
 // Zero-config
 await build();
@@ -155,7 +155,7 @@ console.log(result.stats);
 
 ## Configuration File
 
-Create `node-jar.config.js` (or `.json`) in your project root:
+Create `nar.config.js` (or `.json`) in your project root:
 
 ```js
 module.exports = {
@@ -239,7 +239,7 @@ Layers stack. Use both for maximum protection.
 
 ## Native Modules
 
-C/C++ addons (`.node` files) cannot be bundled into pure JavaScript. `node-jar` detects them automatically and switches to **sidecar mode**:
+C/C++ addons (`.node` files) cannot be bundled into pure JavaScript. `nar` detects them automatically and switches to **sidecar mode**:
 
 ```
 dist/
@@ -262,7 +262,7 @@ node app.bundle.js
 
 ### Prisma
 
-Prisma's Query Engine is a native binary. `node-jar` detects `@prisma/client` and automatically handles it via sidecar mode.
+Prisma's Query Engine is a native binary. `nar` detects `@prisma/client` and automatically handles it via sidecar mode.
 
 | Scenario | Package | Handling |
 |---|---|---|
@@ -282,9 +282,9 @@ $ npm run build      # 2 minutes
 $ pm2 restart myapp
 ```
 
-**After** (node-jar):
+**After** (nar):
 ```
-$ npx node-jar build --obfuscate
+$ npx nar build --obfuscate
 $ scp dist/app.bundle.js server:/opt/app/
 $ ssh server "pm2 restart myapp"
 ```

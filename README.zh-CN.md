@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="node-jar logo — 卡皮巴拉" width="160">
+  <img src="logo.png" alt="nar logo — 卡皮巴拉" width="160">
 </p>
 
 <p align="center">
@@ -8,13 +8,13 @@
   <img src="https://img.shields.io/badge/version-0.1.0-orange" alt="Version">
 </p>
 
-<h1 align="center">node-jar</h1>
+<h1 align="center">nar</h1>
 
 <p align="center"><strong>将任何 Node.js 后端项目打包为单个可部署文件。<br>Express、NestJS、Koa、Fastify —— 无论什么框架，像维护 JAR 一样维护你的 Node.js 应用。</strong></p>
 
 ---
 
-## 为什么要用 node-jar？
+## 为什么要用 nar？
 
 Java 有 JAR，Python 有 wheel。Node.js 呢？**在生产服务器上 `npm install`。**
 
@@ -26,13 +26,13 @@ git pull → npm install（5 分钟，500MB+）→ npm run build → pm2 restart
 
 每台服务器都要下载几百 MB 的依赖 —— 哪怕你只改了一行代码。
 
-**node-jar** 让你一次构建，到处运行：
+**nar** 让你一次构建，到处运行：
 
 ```
-npx node-jar build → scp dist/app.bundle.js → node app.bundle.js
+npx nar build → scp dist/app.bundle.js → node app.bundle.js
 ```
 
-| | 传统部署 | node-jar |
+| | 传统部署 | nar |
 |---|---|---|
 | **部署耗时** | 5–10 分钟 | **10 秒** |
 | **服务器磁盘** | 200–500 MB | **2–20 MB** |
@@ -48,22 +48,22 @@ npx node-jar build → scp dist/app.bundle.js → node app.bundle.js
 
 ```bash
 # 1. 安装为开发依赖
-npm install --save-dev node-jar
+npm install --save-dev nar-pack
 
 # 2. 构建你的项目（自动检测一切）
-npx node-jar build
+npx nar build
 
 # 3. 部署产出文件
 node dist/app.bundle.js
 ```
 
-就这么简单。无需配置。`node-jar` 自动读取 `package.json`、找到入口文件、检测 TypeScript、打包所有依赖、产出单个文件。
+就这么简单。无需配置。`nar` 自动读取 `package.json`、找到入口文件、检测 TypeScript、打包所有依赖、产出单个文件。
 
 ## 框架兼容性
 
 **一个工具，适配所有框架。**
 
-`node-jar` 通过注入虚拟文件系统 Shim，拦截了 `fs.readFileSync`、`fs.statSync`、`fs.existsSync` 和 `fs.readdirSync` —— 这四个函数是所有 Node.js 框架静态文件中间件的底层依赖。这意味着你的框架**无需任何修改**即可工作。
+`nar` 通过注入虚拟文件系统 Shim，拦截了 `fs.readFileSync`、`fs.statSync`、`fs.existsSync` 和 `fs.readdirSync` —— 这四个函数是所有 Node.js 框架静态文件中间件的底层依赖。这意味着你的框架**无需任何修改**即可工作。
 
 | 框架 | 静态文件 | 模板引擎 | TypeScript | ORM |
 |---|---|---|---|---|
@@ -91,10 +91,10 @@ node dist/app.bundle.js
 
 ```bash
 # 零配置：自动检测项目类型，开箱即用
-npx node-jar build
+npx nar build
 
 # 全配置：适合高级场景
-npx node-jar build \
+npx nar build \
   --entry src/main.ts \
   --output dist/app.bundle.js \
   --tsconfig tsconfig.build.json \
@@ -125,7 +125,7 @@ npx node-jar build \
 ## JS API
 
 ```js
-const { build } = require('node-jar');
+const { build } = require('nar-pack');
 
 // 零配置
 await build();
@@ -155,7 +155,7 @@ console.log(result.stats);
 
 ## 配置文件
 
-在项目根目录创建 `node-jar.config.js`（或 `.json`）：
+在项目根目录创建 `nar.config.js`（或 `.json`）：
 
 ```js
 module.exports = {
@@ -239,7 +239,7 @@ module.exports = {
 
 ## 原生模块
 
-C/C++ 扩展（`.node` 文件）无法嵌入纯 JS bundle。`node-jar` 自动检测并启用 **sidecar 模式**：
+C/C++ 扩展（`.node` 文件）无法嵌入纯 JS bundle。`nar` 自动检测并启用 **sidecar 模式**：
 
 ```
 dist/
@@ -262,7 +262,7 @@ node app.bundle.js
 
 ### Prisma 特殊处理
 
-Prisma 的 Query Engine 是原生二进制。`node-jar` 自动检测 `@prisma/client` → 加入 externals → sidecar 模式。
+Prisma 的 Query Engine 是原生二进制。`nar` 自动检测 `@prisma/client` → 加入 externals → sidecar 模式。
 
 | 场景 | 包名 | 处理方式 |
 |---|---|---|
@@ -282,9 +282,9 @@ $ npm run build      # 2 分钟
 $ pm2 restart myapp
 ```
 
-**node-jar 部署流程**：
+**nar 部署流程**：
 ```
-$ npx node-jar build --obfuscate
+$ npx nar build --obfuscate
 $ scp dist/app.bundle.js server:/opt/app/
 $ ssh server "pm2 restart myapp"
 ```

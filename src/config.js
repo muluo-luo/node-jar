@@ -4,9 +4,9 @@ const { info } = require('./utils');
 
 function loadConfig(cwd = process.cwd()) {
   const configFiles = [
-    'node-jar.config.js',
-    'node-jar.config.cjs',
-    'node-jar.config.json',
+    'nar.config.js',
+    'nar.config.cjs',
+    'nar.config.json',
   ];
 
   for (const name of configFiles) {

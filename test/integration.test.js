@@ -39,7 +39,7 @@ function httpPost(path, body) {
   });
 }
 
-test('node-jar bundles and runs Express app', { timeout: 30000 }, async (t) => {
+test('nar bundles and runs Express app', { timeout: 30000 }, async (t) => {
   let serverProcess;
 
   await t.test('bundle produces valid output file', async () => {
@@ -97,7 +97,7 @@ test('node-jar bundles and runs Express app', { timeout: 30000 }, async (t) => {
     // Test static file via virtual FS
     const staticResp = await httpGet('/');
     assert.strictEqual(staticResp.status, 200);
-    assert.ok(staticResp.data.includes('Hello from node-jar bundle!'));
+    assert.ok(staticResp.data.includes('Hello from nar bundle!'));
   });
 
   await t.test('bundled server handles 404 for missing routes', async () => {

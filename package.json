@@ -1,16 +1,17 @@
 {
-  "name": "node-jar",
+  "name": "nar-pack",
   "version": "0.1.0",
-  "description": "Bundle Node.js apps into a single deployable file — like Java JAR but for Node",
+  "description": "Bundle Node.js apps into a single deployable file — Node Archive, like Java JAR but for Node",
   "keywords": [
-    "bundle",
+    "nar",
     "jar",
+    "archive",
+    "bundle",
     "deploy",
     "package",
     "ncc",
     "obfuscate",
     "single-file",
-    "node-jar",
     "deployment",
     "nestjs",
     "express"
@@ -19,7 +20,7 @@
   "author": "慕落 <1227368128@qq.com>",
   "main": "src/index.js",
   "bin": {
-    "node-jar": "bin/cli.js"
+    "nar": "bin/cli.js"
   },
   "files": [
     "bin/",
@@ -34,11 +35,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/muluo/node-jar"
+    "url": "https://github.com/muluo/nar-pack"
   },
-  "homepage": "https://github.com/muluo/node-jar#readme",
+  "homepage": "https://github.com/muluo/nar-pack#readme",
   "bugs": {
-    "url": "https://github.com/muluo/node-jar/issues"
+    "url": "https://github.com/muluo/nar-pack/issues"
   },
   "scripts": {
     "test": "node --test test/*.test.js",
